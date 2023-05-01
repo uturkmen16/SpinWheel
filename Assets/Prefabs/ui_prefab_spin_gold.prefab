@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8445194864174831043}
   m_Layer: 5
-  m_Name: ui_prefab_spin_bronze
+  m_Name: ui_prefab_spin_gold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 8445194864756761801}
   - component: {fileID: 8445194864756761814}
   m_Layer: 5
-  m_Name: ui_image_spin_bronze_base
+  m_Name: ui_image_spin_gold_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2424bc553e1bed244a6a5c9709878b34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b8bf4a774218ac4eb8c1251db804a10, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 8445194866224365031}
   - component: {fileID: 8445194866224365028}
   m_Layer: 5
-  m_Name: ui_image_spin_bronze_indicator
+  m_Name: ui_image_spin_gold_indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a07b280e329c6774395606a366a92732, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 019cc51c9687dd3448e67002de20abdf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

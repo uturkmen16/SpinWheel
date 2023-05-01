@@ -7,30 +7,41 @@ using System;
 public class LevelSettings : ScriptableObject
 {
     [Serializable]
-    private struct SlotValue {
+    public struct SlotValue {
         public ItemType itemtype;
         public int amount;
     }
 
     const int size = 8;
-    [SerializeField] private String topText;
-    [SerializeField] private String bottomText;
-    [SerializeField] private Sprite baseSprite;
-    [SerializeField] private Sprite indicatorSprite;
-    [SerializeField] private Sprite buttonSprite;
-    [SerializeField] private SlotValue[] rewards = new SlotValue[size];
+    [SerializeField] private int frequency;
+
+
+    [SerializeField] private GameObject _prefab;
+
+    public GameObject Prefab { get {return _prefab;}}
+
+
+    [SerializeField] private SlotValue[] _rewards = new SlotValue[size];
+
+    public SlotValue[] Rewards { get {return _rewards;}}
+    
 
     void OnValidate()
     {
-        if (rewards.Length != size) {
+        if (_rewards.Length != size) {
             Debug.LogWarning("Don't change the rewards array size!");
-            Array.Resize(ref rewards, size);
+            Array.Resize(ref _rewards, size);
         }
 
-        for(int i = 0; i < rewards.Length; i++) {
-            if(rewards[i].amount < 1) {
-                rewards[i].amount = 1;
+        if (frequency < 1) {
+            Debug.LogWarning("Frequency value must be positive");
+            frequency = 1;
+        }
+
+        for(int i = 0; i < _rewards.Length; i++) {
+            if(_rewards[i].amount < 1) {
+                _rewards[i].amount = 1;
             }
-        } 
+        }
     }
 }
