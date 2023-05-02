@@ -32,20 +32,38 @@ public class LevelSettings : ScriptableObject
     }
 
     const int size = 8;
-    [SerializeField] private int frequency;
 
+    //Frequency of the level. How many levels before this levels shows up.
+    [SerializeField] private int _frequency;
+
+    public int Frequency {
+        get {return _frequency;}
+    }
+    
+    //Minimum number of elements between the base element and the randomly chosen index.
+    [SerializeField] private int _minimumRoll;
+
+    public int MinimumRoll {
+        get {return _minimumRoll;}
+    }
+
+    //Maximum number of elements between the base element and the randomly chosen index.
+    [SerializeField] private int _maximumRoll;
+
+    public int MaximumRoll {
+        get {return _maximumRoll;}
+    }
 
     [SerializeField] private GameObject _prefab;
 
-    public GameObject Prefab { get {return _prefab;}}
-
+    public GameObject Prefab { 
+        get {return _prefab;}
+    }
 
     [SerializeField] private SlotValue[] _rewards = new SlotValue[size];
 
-    public SlotValue[] Rewards { 
-        get {
-            return _rewards;
-        }
+    public SlotValue[] Rewards { get 
+        {return _rewards;}
     }
 
     
@@ -56,9 +74,19 @@ public class LevelSettings : ScriptableObject
             Array.Resize(ref _rewards, size);
         }
 
-        if (frequency < 1) {
-            Debug.LogWarning("Frequency value must be positive");
-            frequency = 1;
+        if (_frequency < 1) {
+            Debug.LogWarning("Frequency value must be positive!");
+            _frequency = 1;
+        }
+
+        if(_minimumRoll < 1 ){
+            Debug.LogWarning("Minimum roll must be positive!");
+            _minimumRoll = 1;
+        }
+
+        if(_maximumRoll <= _minimumRoll) {
+            Debug.LogWarning("Maximum roll must be higher than minimum roll!");
+            _maximumRoll = _minimumRoll + 1;
         }
 
         for(int i = 0; i < _rewards.Length; i++) {

@@ -12,22 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb94d54d89af354a8d4285c6ecf9f7e, type: 3}
   m_Name: ui_settings_level_gold
   m_EditorClassIdentifier: 
-  frequency: 1
+  _frequency: 1
+  _minimumRoll: 1
+  _maximumRoll: 2
   _prefab: {fileID: 8445194864174831040, guid: 64678b2ac30403945ae6cd55a553d546, type: 3}
   _rewards:
-  - itemtype: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
+  - itemType: {fileID: 0}
     amount: 565
-  - itemtype: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
+  - itemType: {fileID: 0}
     amount: 5
-  - itemtype: {fileID: 11400000, guid: 9e6a9f679e9f18a4f902af20e11833f3, type: 2}
+  - itemType: {fileID: 0}
     amount: 88
-  - itemtype: {fileID: 0}
+  - itemType: {fileID: 0}
     amount: 1
-  - itemtype: {fileID: 0}
+  - itemType: {fileID: 0}
     amount: 1
-  - itemtype: {fileID: 0}
+  - itemType: {fileID: 0}
     amount: 1
-  - itemtype: {fileID: 0}
+  - itemType: {fileID: 0}
     amount: 1
-  - itemtype: {fileID: 0}
+  - itemType: {fileID: 0}
     amount: 1
