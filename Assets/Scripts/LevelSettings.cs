@@ -32,13 +32,6 @@ public class LevelSettings : ScriptableObject
     }
 
     const int size = 8;
-
-    //Frequency of the level. How many levels before this levels shows up.
-    [SerializeField] private int _frequency;
-
-    public int Frequency {
-        get {return _frequency;}
-    }
     
     //Minimum number of elements between the base element and the randomly chosen index.
     [SerializeField] private int _minimumRoll;
@@ -54,12 +47,6 @@ public class LevelSettings : ScriptableObject
         get {return _maximumRoll;}
     }
 
-    [SerializeField] private GameObject _prefab;
-
-    public GameObject Prefab { 
-        get {return _prefab;}
-    }
-
     [SerializeField] private SlotValue[] _rewards = new SlotValue[size];
 
     public SlotValue[] Rewards { get 
@@ -72,11 +59,6 @@ public class LevelSettings : ScriptableObject
         if (_rewards.Length != size) {
             Debug.LogWarning("Don't change the rewards array size!");
             Array.Resize(ref _rewards, size);
-        }
-
-        if (_frequency < 1) {
-            Debug.LogWarning("Frequency value must be positive!");
-            _frequency = 1;
         }
 
         if(_minimumRoll < 1 ){

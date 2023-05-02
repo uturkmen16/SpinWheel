@@ -8,37 +8,61 @@ using DG.Tweening;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    List<LevelSettings> levelSettings;
+    private List<LevelSettings> levelSettings;
+    [SerializeField]
+    private int silverPeriod;
+    [SerializeField]
+    private int goldPeriod;
+    [SerializeField]
+    private GameObject bronzePrefab;
+    [SerializeField]
+    private GameObject silverPrefab;
+    [SerializeField]
+    private GameObject goldPrefab;
+
+    
     private GameObject currentLevelInstance;
     
     //Type of the current level such as: Bronze - 0, Silver - 1, Gold - 2
     private int currentLevelType;
 
     //Level number that increases each level starting from level 1
-    private int currentLevelNo;
+    private int currentLevelNo = 1;
     void Start() {
 
-        int currentLevelNo = 1;
-
-        int currentLevelType = 0;
-
-        InitLevel(currentLevelType);
+        InitLevel(currentLevelNo);
     }
 
     void Update() {
     }
 
-    private void InitLevel(int levelType) {
+    void OnValidate() {
+        if(silverPeriod < 2) {
+            Debug.LogWarning("Silver period must be higher than 1!");
+            silverPeriod = 2;
+        }
+        if(goldPeriod <= silverPeriod) {
+            Debug.LogWarning("Gold Period must be higher than silver period!");
+            goldPeriod = silverPeriod + 1;
+        }
+    }
 
-        levelSettings[levelType].ShuffleRewards();
+    private void InitLevel(int levelNo) {
 
-        currentLevelInstance = Instantiate(levelSettings[levelType].Prefab, transform);
+        Debug.Log("Loading" + levelNo);
+
+        levelSettings[levelNo - 1].ShuffleRewards();
+
+        if(levelNo % goldPeriod == 0) currentLevelInstance = Instantiate(goldPrefab, transform);
+        else if(levelNo % silverPeriod == 0) currentLevelInstance = Instantiate(silverPrefab, transform);
+        else currentLevelInstance = Instantiate(bronzePrefab, transform);
+
         Transform baseTransform = currentLevelInstance.transform.GetChild(0);
 
         for(int i = 0; i < baseTransform.childCount; i++) {
             Transform childTransform = baseTransform.GetChild(i);
-            childTransform.GetComponentInChildren<Image>().sprite = levelSettings[levelType].Rewards[i].itemType.itemIcon;
-            int amount = levelSettings[levelType].Rewards[i].amount;
+            childTransform.GetComponentInChildren<Image>().sprite = levelSettings[levelNo - 1].Rewards[i].itemType.itemIcon;
+            int amount = levelSettings[levelNo - 1].Rewards[i].amount;
             string suffix = "";
             if(amount > 999999) {
                 //Million
@@ -58,13 +82,19 @@ public class UIManager : MonoBehaviour
     }
 
     private void SpinAnimationOverCallback() {
-        currentLevelNo++;
         Destroy(currentLevelInstance);
-        InitLevel(currentLevelType);
+        if(currentLevelNo < levelSettings.Count) {
+            currentLevelNo++;
+            InitLevel(currentLevelNo);
+        }
+        else {
+            Debug.Log("There are no more levels!");
+        }
     }
 
     public void SpinWheel() {
         int randomInt = UnityEngine.Random.Range(levelSettings[currentLevelType].MinimumRoll, levelSettings[currentLevelType].MaximumRoll);
+        //Debug.Log("You've earned " + levelSettings[currentLevelType].);
         currentLevelInstance.transform.GetChild(0).transform.DORotate(new Vector3(0, 0, randomInt * 45), 1 + randomInt / 5, RotateMode.LocalAxisAdd)
         .OnComplete(SpinAnimationOverCallback);
         transform.GetChild(0).GetComponentInChildren<Button>().interactable = false;

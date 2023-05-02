@@ -422,7 +422,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0.508
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -484,5 +484,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelSettings:
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
-  - {fileID: 11400000, guid: 3018244748d5fa748ae8851d30ea6727, type: 2}
   - {fileID: 11400000, guid: e3806918038bcb84f8b26d758f7648cd, type: 2}
+  - {fileID: 11400000, guid: e3806918038bcb84f8b26d758f7648cd, type: 2}
+  - {fileID: 11400000, guid: e3806918038bcb84f8b26d758f7648cd, type: 2}
+  - {fileID: 11400000, guid: e3806918038bcb84f8b26d758f7648cd, type: 2}
+  - {fileID: 11400000, guid: e3806918038bcb84f8b26d758f7648cd, type: 2}
+  silverPeriod: 5
+  goldPeriod: 30
+  bronzePrefab: {fileID: 8445194864174831040, guid: 491d47a4d9911da4498e4c29f2e92200, type: 3}
+  silverPrefab: {fileID: 8445194864174831040, guid: b8de7310ea4e5db469736a8b2606d2e6, type: 3}
+  goldPrefab: {fileID: 8445194864174831040, guid: 1e0f8b838890ef64ba7c8a411df34daa, type: 3}
