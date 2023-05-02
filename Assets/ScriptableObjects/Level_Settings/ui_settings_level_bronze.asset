@@ -15,19 +15,19 @@ MonoBehaviour:
   frequency: 1
   _prefab: {fileID: 8445194864174831040, guid: 491d47a4d9911da4498e4c29f2e92200, type: 3}
   _rewards:
-  - itemtype: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
-    amount: 1
-  - itemtype: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
-    amount: 1
-  - itemtype: {fileID: 11400000, guid: 9e6a9f679e9f18a4f902af20e11833f3, type: 2}
-    amount: 1
-  - itemtype: {fileID: 0}
-    amount: 1
-  - itemtype: {fileID: 0}
-    amount: 1
-  - itemtype: {fileID: 0}
-    amount: 1
-  - itemtype: {fileID: 0}
-    amount: 1
-  - itemtype: {fileID: 0}
-    amount: 1
+  - itemType: {fileID: 11400000, guid: 9e6a9f679e9f18a4f902af20e11833f3, type: 2}
+    amount: 34
+  - itemType: {fileID: 11400000, guid: 9e6a9f679e9f18a4f902af20e11833f3, type: 2}
+    amount: 3425
+  - itemType: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
+    amount: 23
+  - itemType: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
+    amount: 11000000
+  - itemType: {fileID: 11400000, guid: 9e6a9f679e9f18a4f902af20e11833f3, type: 2}
+    amount: 454
+  - itemType: {fileID: 11400000, guid: 9e6a9f679e9f18a4f902af20e11833f3, type: 2}
+    amount: 56645
+  - itemType: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
+    amount: 5
+  - itemType: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
+    amount: 122
