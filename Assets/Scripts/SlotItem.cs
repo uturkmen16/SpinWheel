@@ -12,7 +12,24 @@ public enum ItemType
 [CreateAssetMenu(menuName = "SpinWheel/ItemType")]
 public class SlotItem : ScriptableObject
 {
-    public string itemName;
-    public Sprite itemIcon;
-    public ItemType itemType;
+    [SerializeField]
+    private string _itemName;
+    
+    public string ItemName {
+        get {return _itemName;}
+    }
+
+    [SerializeField]
+    private Sprite _itemIcon;
+    
+    public Sprite ItemIcon {
+        get {return _itemIcon;}
+    }
+
+    [SerializeField]
+    private ItemType _itemType;
+
+    public ItemType ItemType {
+        get {return _itemType;}
+    }
 }

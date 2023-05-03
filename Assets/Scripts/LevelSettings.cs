@@ -15,21 +15,6 @@ public class LevelSettings : ScriptableObject
             _rewards[i] = temp;
         }
     }
-    [Serializable]
-    public struct SlotValue {
-        public SlotItem slotItem;
-        public int amount;    
-        
-        public SlotValue(SlotItem slotItem, int amount) {
-            this.slotItem = slotItem;
-            this.amount = amount;
-        }
-    
-        public SlotValue(SlotValue other) {
-            this.slotItem = other.slotItem;
-            this.amount = other.amount;
-        }
-    }
 
     const int size = 8;
     
@@ -72,8 +57,8 @@ public class LevelSettings : ScriptableObject
         }
 
         for(int i = 0; i < _rewards.Length; i++) {
-            if(_rewards[i].amount < 1) {
-                _rewards[i].amount = 1;
+            if(_rewards[i].Amount < 1) {
+                _rewards[i].Amount = 1;
             }
         }
     }

@@ -61,8 +61,8 @@ public class UIManager : MonoBehaviour
 
         for(int i = 0; i < baseTransform.childCount; i++) {
             Transform childTransform = baseTransform.GetChild(i);
-            childTransform.GetComponentInChildren<Image>().sprite = levelSettings[levelNo - 1].Rewards[i].slotItem.itemIcon;
-            int amount = levelSettings[levelNo - 1].Rewards[i].amount;
+            childTransform.GetComponentInChildren<Image>().sprite = levelSettings[levelNo - 1].Rewards[i].SlotItem.ItemIcon;
+            int amount = levelSettings[levelNo - 1].Rewards[i].Amount;
             string suffix = "";
             if(amount > 999999) {
                 //Million
@@ -97,9 +97,8 @@ public class UIManager : MonoBehaviour
         //Debug.Log("You've earned " + levelSettings[currentLevelType].);
         currentLevelInstance.transform.GetChild(0).transform.DORotate(new Vector3(0, 0, randomInt * 45), 1 + randomInt / 5, RotateMode.LocalAxisAdd)
         .OnComplete(SpinAnimationOverCallback);
-        transform.GetChild(0).GetComponentInChildren<Button>().interactable = false;
+
+        //Change this from being hardcoded
+        transform.GetChild(2).GetComponentInChildren<Button>().interactable = false;
     }
-
-    private void getLevelType(int currentLevelNo) {}
-
 }
