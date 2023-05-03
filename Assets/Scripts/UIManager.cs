@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
 
         for(int i = 0; i < baseTransform.childCount; i++) {
             Transform childTransform = baseTransform.GetChild(i);
-            childTransform.GetComponentInChildren<Image>().sprite = levelSettings[levelNo - 1].Rewards[i].itemType.itemIcon;
+            childTransform.GetComponentInChildren<Image>().sprite = levelSettings[levelNo - 1].Rewards[i].slotItem.itemIcon;
             int amount = levelSettings[levelNo - 1].Rewards[i].amount;
             string suffix = "";
             if(amount > 999999) {

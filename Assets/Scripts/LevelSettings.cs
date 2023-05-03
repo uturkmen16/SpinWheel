@@ -17,16 +17,16 @@ public class LevelSettings : ScriptableObject
     }
     [Serializable]
     public struct SlotValue {
-        public ItemType itemType;
+        public SlotItem slotItem;
         public int amount;    
         
-        public SlotValue(ItemType itemType, int amount) {
-            this.itemType = itemType;
+        public SlotValue(SlotItem slotItem, int amount) {
+            this.slotItem = slotItem;
             this.amount = amount;
         }
     
         public SlotValue(SlotValue other) {
-            this.itemType = other.itemType;
+            this.slotItem = other.slotItem;
             this.amount = other.amount;
         }
     }
