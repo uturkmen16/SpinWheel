@@ -1119,6 +1119,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
+  - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
+  - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
+  - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
+  - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
+  - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   silverPeriod: 5
   goldPeriod: 30
   bronzePrefab: {fileID: 8445194864174831040, guid: 491d47a4d9911da4498e4c29f2e92200, type: 3}

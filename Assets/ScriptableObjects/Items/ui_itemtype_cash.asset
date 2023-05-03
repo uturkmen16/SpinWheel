@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87376775058897440b8f0f773cbad105, type: 3}
   m_Name: ui_itemtype_cash
   m_EditorClassIdentifier: 
-  itemName: Cash
-  itemIcon: {fileID: 21300000, guid: a54455af1a775cb4fa8687363ac55399, type: 3}
+  _itemName: Cash
+  _itemIcon: {fileID: 21300000, guid: a54455af1a775cb4fa8687363ac55399, type: 3}
+  _itemType: 0

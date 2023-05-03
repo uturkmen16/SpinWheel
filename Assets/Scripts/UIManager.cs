@@ -22,12 +22,11 @@ public class UIManager : MonoBehaviour
 
     
     private GameObject currentLevelInstance;
-    
-    //Type of the current level such as: Bronze - 0, Silver - 1, Gold - 2
-    private int currentLevelType;
 
     //Level number that increases each level starting from level 1
     private int currentLevelNo = 1;
+
+    private Inventory rewardsInventory = new Inventory();
     void Start() {
 
         InitLevel(currentLevelNo);
@@ -93,8 +92,12 @@ public class UIManager : MonoBehaviour
     }
 
     public void SpinWheel() {
-        int randomInt = UnityEngine.Random.Range(levelSettings[currentLevelType].MinimumRoll, levelSettings[currentLevelType].MaximumRoll);
-        //Debug.Log("You've earned " + levelSettings[currentLevelType].);
+        int randomInt = UnityEngine.Random.Range(levelSettings[currentLevelNo].MinimumRoll, levelSettings[currentLevelNo].MaximumRoll);
+        Debug.Log("You've earned " + levelSettings[currentLevelNo].Rewards[randomInt % 8].Amount + " amount of item " + levelSettings[currentLevelNo].Rewards[randomInt % 8].SlotItem.ItemName);
+        rewardsInventory.AddItem(levelSettings[currentLevelNo].Rewards[randomInt % 8]);
+        for(int i = 0; i < rewardsInventory.InventoryLength; i++) {
+            Debug.Log(rewardsInventory.InventoryList[i].SlotItem.ItemName + " : " + rewardsInventory.InventoryList[i].Amount);
+        }
         currentLevelInstance.transform.GetChild(0).transform.DORotate(new Vector3(0, 0, randomInt * 45), 1 + randomInt / 5, RotateMode.LocalAxisAdd)
         .OnComplete(SpinAnimationOverCallback);
 
