@@ -78,28 +78,36 @@ public class UIManager : MonoBehaviour
 
         //Add spin button callback
         currentLevelInstance.GetComponentInChildren<Button>().onClick.AddListener(SpinWheel);
-    }
-
-    private void SpinAnimationOverCallback() {
-        Destroy(currentLevelInstance);
-        if(currentLevelNo < levelSettings.Count) {
-            currentLevelNo++;
-            InitLevel(currentLevelNo);
-        }
-        else {
-            Debug.Log("There are no more levels!");
-        }
-    }
+    } 
 
     public void SpinWheel() {
         int randomInt = UnityEngine.Random.Range(levelSettings[currentLevelNo].MinimumRoll, levelSettings[currentLevelNo].MaximumRoll);
-        Debug.Log("You've earned " + levelSettings[currentLevelNo].Rewards[randomInt % 8].Amount + " amount of item " + levelSettings[currentLevelNo].Rewards[randomInt % 8].SlotItem.ItemName);
-        rewardsInventory.AddItem(levelSettings[currentLevelNo].Rewards[randomInt % 8]);
-        for(int i = 0; i < rewardsInventory.InventoryLength; i++) {
-            Debug.Log(rewardsInventory.InventoryList[i].SlotItem.ItemName + " : " + rewardsInventory.InventoryList[i].Amount);
-        }
         currentLevelInstance.transform.GetChild(0).transform.DORotate(new Vector3(0, 0, randomInt * 45), 1 + randomInt / 5, RotateMode.LocalAxisAdd)
-        .OnComplete(SpinAnimationOverCallback);
+        .OnComplete(() => {
+            //Spin animation is over
+            if(levelSettings[currentLevelNo].Rewards[randomInt % 8].SlotItem.ItemType == ItemType.Lethal) {
+                //Item is a lethal bomb
+                Debug.Log("GAME OVER!!");
+                Application.Quit();
+            }
+
+            else {
+                //Item is an inventory item
+                Debug.Log("You've earned " + levelSettings[currentLevelNo].Rewards[randomInt % 8].Amount + " amount of item " + levelSettings[currentLevelNo].Rewards[randomInt % 8].SlotItem.ItemName);
+                rewardsInventory.AddItem(levelSettings[currentLevelNo].Rewards[randomInt % 8]);
+                for(int i = 0; i < rewardsInventory.InventoryLength; i++) {
+                    Debug.Log(rewardsInventory.InventoryList[i].SlotItem.ItemName + " : " + rewardsInventory.InventoryList[i].Amount);
+                }
+            }
+            Destroy(currentLevelInstance);
+            if(currentLevelNo < levelSettings.Count) {
+                currentLevelNo++;
+                InitLevel(currentLevelNo);
+            }
+            else {
+                Debug.Log("There are no more levels!");
+            }
+        });
 
         //Change this from being hardcoded
         transform.GetChild(2).GetComponentInChildren<Button>().interactable = false;
