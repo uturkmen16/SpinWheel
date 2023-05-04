@@ -18,7 +18,7 @@ public class Inventory {
 
     //Returns the item at the specified index
     public SlotValue ItemAt(int index) {
-        if(0 < index && index < _inventory.Count) {
+        if(0 < index && index >= _inventory.Count) {
             //Negative index value or out of inventory bounds
             return null;
         }

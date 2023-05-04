@@ -50,8 +50,6 @@ public class UIManager : MonoBehaviour
 
     private void InitLevel(int levelNo) {
 
-        Debug.Log("Loading" + levelNo);
-
         levelSettings[levelNo - 1].ShuffleRewards();
 
         if(levelNo % goldPeriod == 0) currentLevelInstance = Instantiate(goldPrefab, transform);
@@ -77,10 +75,17 @@ public class UIManager : MonoBehaviour
         if(container == null) {
             Debug.Log("CANT FIND CONTAINER");
         }
+        //Delete all of the children
+        foreach (Transform child in container.transform) {
+            GameObject.Destroy(child.gameObject);
+        }
         for(int i = 0; i < rewardsInventory.InventoryLength; i++) {
-            GameObject slotValueObject = GameObject.Instantiate(slotValuePrefab, container.transform);
+            Sprite sprite = rewardsInventory.ItemAt(i).SlotItem.ItemIcon;
+            GameObject slotValueObject = Instantiate(slotValuePrefab, container.transform);
             slotValueObject.GetComponentInChildren<Image>().sprite = rewardsInventory.ItemAt(i).SlotItem.ItemIcon;
             slotValueObject.GetComponentInChildren<TextMeshProUGUI>().text = rewardsInventory.ItemAt(i).Amount.ToString();
+            float height = slotValueObject.GetComponentInChildren<RectTransform>().sizeDelta.y;
+            slotValueObject.GetComponentInChildren<RectTransform>().anchoredPosition = new Vector2(0, - height * i / 2);
         }
     }
 
