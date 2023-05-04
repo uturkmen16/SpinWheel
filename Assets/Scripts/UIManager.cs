@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
     private GameObject silverPrefab;
     [SerializeField]
     private GameObject goldPrefab;
+    [SerializeField]
+    private GameObject exitScreenPrefab;
 
     
     private GameObject currentLevelInstance;
@@ -30,7 +32,7 @@ public class UIManager : MonoBehaviour
 
     private Inventory rewardsInventory = new Inventory();
     void Start() {
-        GameObject.Find("Rewards_frame_button_exit").GetComponent<Button>().onClick.AddListener(ExitGame);
+        GameObject.Find("Rewards_frame_button_exit").GetComponent<Button>().onClick.AddListener(ExitButtonCallback);
         InitLevel(currentLevelNo);
     }
 
@@ -108,7 +110,7 @@ public class UIManager : MonoBehaviour
                 //Item is a lethal bomb
                 Debug.Log("GAME OVER!!");
                 //Change this from being hardcoded
-                transform.GetChild(3).GetComponentInChildren<Button>().interactable = false;
+                transform.GetChild(transform.childCount - 1).GetComponentInChildren<Button>().interactable = false;
             }
 
             else {
@@ -136,11 +138,13 @@ public class UIManager : MonoBehaviour
         });
 
         //Change this from being hardcoded
-        transform.GetChild(3).GetComponentInChildren<Button>().interactable = false;
+        transform.GetChild(transform.childCount - 1).GetComponentInChildren<Button>().interactable = false;
     }
 
-    public void ExitGame() {
+    public void ExitButtonCallback() {
 
+        Instantiate(exitScreenPrefab, this.transform);
+        
         for(int i = 0; i < rewardsInventory.InventoryLength; i++) {
             Debug.Log(rewardsInventory.ItemAt(i).SlotItem.ItemName + " : " + rewardsInventory.ItemAt(i).Amount);
         }

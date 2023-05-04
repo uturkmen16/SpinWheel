@@ -1444,6 +1444,7 @@ MonoBehaviour:
   bronzePrefab: {fileID: 8445194864174831040, guid: 491d47a4d9911da4498e4c29f2e92200, type: 3}
   silverPrefab: {fileID: 8445194864174831040, guid: b8de7310ea4e5db469736a8b2606d2e6, type: 3}
   goldPrefab: {fileID: 8445194864174831040, guid: 1e0f8b838890ef64ba7c8a411df34daa, type: 3}
+  exitScreenPrefab: {fileID: 2084344863359271857, guid: b5b33bcefb56ead42a7490301b0b743d, type: 3}
 --- !u!1 &1970498638
 GameObject:
   m_ObjectHideFlags: 0
