@@ -5,6 +5,7 @@ Shader "Unlit/GrayScaleMask"
         _MainTex ("Sprite", 2D) = "white" {}
         _MaskTex ("Mask", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
+        [MaterialToggle] _ToggleMove("ToggleMove", Float) = 0
     }
     SubShader
     {
@@ -31,6 +32,7 @@ Shader "Unlit/GrayScaleMask"
 
             sampler2D _MainTex;
             sampler2D _MaskTex;
+            bool _ToggleMove;
             float4 _MainTex_ST;
 
             v2f vert (appdata v) {
@@ -43,7 +45,9 @@ Shader "Unlit/GrayScaleMask"
             fixed4 frag (v2f i) : SV_Target {
                 // sample the texture
 
-                fixed4 col = tex2D(_MainTex, i.uv) * tex2D(_MaskTex, i.uv);
+                float2 offset =  _ToggleMove * float2(((_SinTime.y + 1) / 2) , 0);
+
+                fixed4 col = tex2D(_MainTex, i.uv) * tex2D(_MaskTex, i.uv + offset);
                 return col;
             }
             ENDCG
