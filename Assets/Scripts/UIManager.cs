@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
     private GameObject goldPrefab;
     [SerializeField]
     private GameObject exitScreenPrefab;
+    [SerializeField]
+    private GameObject lethalScreenPrefab;
 
     
     private GameObject currentLevelInstance;
@@ -102,27 +104,28 @@ public class UIManager : MonoBehaviour
         //Exit button is inactive since game started
         GameObject.Find("Rewards_frame_button_exit").GetComponent<Button>().interactable = false;
 
-        int randomInt = UnityEngine.Random.Range(levelSettings[currentLevelNo].MinimumRoll, levelSettings[currentLevelNo].MaximumRoll);
+        int randomInt = UnityEngine.Random.Range(levelSettings[currentLevelNo - 1].MinimumRoll, levelSettings[currentLevelNo - 1].MaximumRoll);
         currentLevelInstance.transform.GetChild(0).transform.DORotate(new Vector3(0, 0, randomInt * 45), 1 + randomInt / 5, RotateMode.LocalAxisAdd)
         .OnComplete(() => {
             //Spin animation is over
-            if(levelSettings[currentLevelNo].Rewards[randomInt % 8].SlotItem.ItemType == ItemType.Lethal) {
+            if(levelSettings[currentLevelNo - 1].Rewards[randomInt % 8].SlotItem.ItemType == ItemType.Lethal) {
                 //Item is a lethal bomb
                 Debug.Log("GAME OVER!!");
+                Instantiate(lethalScreenPrefab, this.transform);
                 //Change this from being hardcoded
-                transform.GetChild(transform.childCount - 1).GetComponentInChildren<Button>().interactable = false;
+                transform.GetChild(transform.childCount - 2).GetComponentInChildren<Button>().interactable = false;
             }
 
             else {
                 //Item is an inventory item
-                Debug.Log("You've earned " + levelSettings[currentLevelNo].Rewards[randomInt % 8].Amount + " amount of item " + levelSettings[currentLevelNo].Rewards[randomInt % 8].SlotItem.ItemName);
-                rewardsInventory.AddItem(levelSettings[currentLevelNo].Rewards[randomInt % 8]);
+                Debug.Log("You've earned " + levelSettings[currentLevelNo - 1].Rewards[randomInt % 8].Amount + " amount of item " + levelSettings[currentLevelNo].Rewards[randomInt % 8].SlotItem.ItemName);
+                rewardsInventory.AddItem(levelSettings[currentLevelNo - 1].Rewards[randomInt % 8]);
 
                 DisplayInventory();
 
                 Destroy(currentLevelInstance);
 
-                if(currentLevelNo < levelSettings.Count) {
+                if(currentLevelNo <= levelSettings.Count) {
                     currentLevelNo++;
                     if(currentLevelNo % silverPeriod == 0 || currentLevelNo % goldPeriod == 0) {
                         //Exit button is active
