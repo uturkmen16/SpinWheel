@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
 
     private Inventory rewardsInventory = new Inventory();
     void Start() {
-
+        GameObject.Find("Rewards_frame_button_exit").GetComponent<Button>().onClick.AddListener(ExitGame);
         InitLevel(currentLevelNo);
     }
 
