@@ -79,6 +79,8 @@ public class UIManager : MonoBehaviour
         foreach (Transform child in container.transform) {
             GameObject.Destroy(child.gameObject);
         }
+
+
         for(int i = 0; i < rewardsInventory.InventoryLength; i++) {
             Sprite sprite = rewardsInventory.ItemAt(i).SlotItem.ItemIcon;
             GameObject slotValueObject = Instantiate(slotValuePrefab, container.transform);
@@ -86,6 +88,11 @@ public class UIManager : MonoBehaviour
             slotValueObject.GetComponentInChildren<TextMeshProUGUI>().text = rewardsInventory.ItemAt(i).Amount.ToString();
             float height = slotValueObject.GetComponentInChildren<RectTransform>().sizeDelta.y;
             slotValueObject.GetComponentInChildren<RectTransform>().anchoredPosition = new Vector2(0, - height * i / 2);
+            if(i >= rewardsInventory.InventoryLength - 1) {
+                //Last child
+                //Expand container according to the children
+                container.GetComponent<RectTransform>().sizeDelta = new Vector2(container.GetComponent<RectTransform>().sizeDelta.x, height * (i + 1) / 2);
+            }
         }
     }
 
@@ -104,15 +111,20 @@ public class UIManager : MonoBehaviour
                 //Item is an inventory item
                 Debug.Log("You've earned " + levelSettings[currentLevelNo].Rewards[randomInt % 8].Amount + " amount of item " + levelSettings[currentLevelNo].Rewards[randomInt % 8].SlotItem.ItemName);
                 rewardsInventory.AddItem(levelSettings[currentLevelNo].Rewards[randomInt % 8]);
+
                 DisplayInventory();
+
                 for(int i = 0; i < rewardsInventory.InventoryLength; i++) {
                     Debug.Log(rewardsInventory.ItemAt(i).SlotItem.ItemName + " : " + rewardsInventory.ItemAt(i).Amount);
                 }
+
                 Destroy(currentLevelInstance);
+
                 if(currentLevelNo < levelSettings.Count) {
                     currentLevelNo++;
                     InitLevel(currentLevelNo);
                 }
+
                 else {
                     Debug.Log("There are no more levels!");
                 }
