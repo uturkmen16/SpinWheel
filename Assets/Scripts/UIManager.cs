@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private int goldPeriod;
     [SerializeField]
+    private GameObject slotValuePrefab;
+    [SerializeField]
     private GameObject bronzePrefab;
     [SerializeField]
     private GameObject silverPrefab;
@@ -62,23 +64,25 @@ public class UIManager : MonoBehaviour
             Transform childTransform = baseTransform.GetChild(i);
             childTransform.GetComponentInChildren<Image>().sprite = levelSettings[levelNo - 1].Rewards[i].SlotItem.ItemIcon;
             int amount = levelSettings[levelNo - 1].Rewards[i].Amount;
-            string suffix = "";
-            if(amount > 999999) {
-                //Million
-                amount /= 1000000;
-                suffix = "M";
-            }
-            else if(amount > 999) {
-                //Thousand
-                amount /= 1000;
-                suffix = "K";
-            }
-            childTransform.GetComponentInChildren<TextMeshProUGUI>().text = "x" + amount.ToString() + suffix;
+            childTransform.GetComponentInChildren<TextMeshProUGUI>().text = "x" + Utils.AbbreviateInteger(amount);
         }
 
         //Add spin button callback
         currentLevelInstance.GetComponentInChildren<Button>().onClick.AddListener(SpinWheel);
-    } 
+    }
+
+    public void DisplayInventory() {
+
+        GameObject container = GameObject.Find("Rewards_frame_display_container");
+        if(container == null) {
+            Debug.Log("CANT FIND CONTAINER");
+        }
+        for(int i = 0; i < rewardsInventory.InventoryLength; i++) {
+            GameObject slotValueObject = GameObject.Instantiate(slotValuePrefab, container.transform);
+            slotValueObject.GetComponentInChildren<Image>().sprite = rewardsInventory.ItemAt(i).SlotItem.ItemIcon;
+            slotValueObject.GetComponentInChildren<TextMeshProUGUI>().text = rewardsInventory.ItemAt(i).Amount.ToString();
+        }
+    }
 
     public void SpinWheel() {
         int randomInt = UnityEngine.Random.Range(levelSettings[currentLevelNo].MinimumRoll, levelSettings[currentLevelNo].MaximumRoll);
@@ -88,24 +92,25 @@ public class UIManager : MonoBehaviour
             if(levelSettings[currentLevelNo].Rewards[randomInt % 8].SlotItem.ItemType == ItemType.Lethal) {
                 //Item is a lethal bomb
                 Debug.Log("GAME OVER!!");
-                Application.Quit();
+                transform.GetChild(2).GetComponentInChildren<Button>().interactable = false;
             }
 
             else {
                 //Item is an inventory item
                 Debug.Log("You've earned " + levelSettings[currentLevelNo].Rewards[randomInt % 8].Amount + " amount of item " + levelSettings[currentLevelNo].Rewards[randomInt % 8].SlotItem.ItemName);
                 rewardsInventory.AddItem(levelSettings[currentLevelNo].Rewards[randomInt % 8]);
+                DisplayInventory();
                 for(int i = 0; i < rewardsInventory.InventoryLength; i++) {
-                    Debug.Log(rewardsInventory.InventoryList[i].SlotItem.ItemName + " : " + rewardsInventory.InventoryList[i].Amount);
+                    Debug.Log(rewardsInventory.ItemAt(i).SlotItem.ItemName + " : " + rewardsInventory.ItemAt(i).Amount);
                 }
-            }
-            Destroy(currentLevelInstance);
-            if(currentLevelNo < levelSettings.Count) {
-                currentLevelNo++;
-                InitLevel(currentLevelNo);
-            }
-            else {
-                Debug.Log("There are no more levels!");
+                Destroy(currentLevelInstance);
+                if(currentLevelNo < levelSettings.Count) {
+                    currentLevelNo++;
+                    InitLevel(currentLevelNo);
+                }
+                else {
+                    Debug.Log("There are no more levels!");
+                }
             }
         });
 

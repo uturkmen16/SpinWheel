@@ -11,13 +11,18 @@ public class Inventory {
 
     private List<SlotValue> _inventory;
 
-    public List<SlotValue> InventoryList {
-        get {return _inventory;}
-    }
-
     //Returns the number of type of items in inventory
     public int InventoryLength {
         get {return _inventory.Count;}
+    }
+
+    //Returns the item at the specified index
+    public SlotValue ItemAt(int index) {
+        if(0 < index && index < _inventory.Count) {
+            //Negative index value or out of inventory bounds
+            return null;
+        }
+        return _inventory[index];
     }
 
     public void AddItem(SlotValue slotValue) {
@@ -54,8 +59,23 @@ public class Inventory {
         return false;
     }
 
+    //Checks if the given item is in inventory
+    public bool IsInInventory(SlotValue slotValue) {
+
+        for(int i = 0; i < _inventory.Count; i++) {
+
+            if(slotValue.SlotItem.ItemName == _inventory[i].SlotItem.ItemName) {
+                //Item exists in inventory
+                return true;
+            }
+        }
+            return false;
+    }
+
     //Deletes all of the existing items
     public void DeleteInventory() {
+
         _inventory = new List<SlotValue>();
+
     }
 }
