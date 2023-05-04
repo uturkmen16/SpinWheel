@@ -20,6 +20,9 @@ public class LethalScreenPopUp : MonoBehaviour
             SceneManager.LoadScene("MainMenuScreen");
         });        
         transform.GetChild(0).Find("Lethalscreen_frame_button_revive").GetComponent<Button>().onClick.AddListener(() => {
+            GameObject canvas = GameObject.Find("Canvas");
+            Debug.Log(canvas.transform.GetChild(canvas.transform.childCount - 2).GetComponentInChildren<Button>().name);
+            canvas.transform.GetChild(canvas.transform.childCount - 2).GetComponentInChildren<Button>().interactable = true;
             Destroy(gameObject);
         });
     }

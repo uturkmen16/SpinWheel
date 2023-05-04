@@ -25,6 +25,10 @@ public class UIManager : MonoBehaviour
     private GameObject exitScreenPrefab;
     [SerializeField]
     private GameObject lethalScreenPrefab;
+    [SerializeField]
+    private GameObject levelLabelPrefab;    
+    [SerializeField]
+    private List<Sprite> levelLabelSprites;
 
     
     private GameObject currentLevelInstance;
@@ -34,6 +38,7 @@ public class UIManager : MonoBehaviour
 
     private Inventory rewardsInventory = new Inventory();
     void Start() {
+        GenerateLevelLabels();
         GameObject.Find("Rewards_frame_button_exit").GetComponent<Button>().onClick.AddListener(ExitButtonCallback);
         InitLevel(currentLevelNo);
     }
@@ -73,7 +78,7 @@ public class UIManager : MonoBehaviour
         currentLevelInstance.GetComponentInChildren<Button>().onClick.AddListener(SpinWheel);
     }
 
-    public void DisplayInventory() {
+    private void DisplayInventory() {
 
         GameObject container = GameObject.Find("Rewards_frame_display_container");
         if(container == null) {
@@ -100,7 +105,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SpinWheel() {
+    private void SpinWheel() {
         //Exit button is inactive since game started
         GameObject.Find("Rewards_frame_button_exit").GetComponent<Button>().interactable = false;
 
@@ -111,9 +116,20 @@ public class UIManager : MonoBehaviour
             if(levelSettings[currentLevelNo - 1].Rewards[randomInt % 8].SlotItem.ItemType == ItemType.Lethal) {
                 //Item is a lethal bomb
                 Debug.Log("GAME OVER!!");
+                Destroy(currentLevelInstance);
+
+                if(currentLevelNo <= levelSettings.Count) {
+                    currentLevelNo++;
+                    if(currentLevelNo % silverPeriod == 0 || currentLevelNo % goldPeriod == 0) {
+                        //Exit button is active
+                        GameObject.Find("Rewards_frame_button_exit").GetComponent<Button>().interactable = true;
+                    }
+                    GenerateLevelLabels();
+                    InitLevel(currentLevelNo);
+                }
                 Instantiate(lethalScreenPrefab, this.transform);
                 //Change this from being hardcoded
-                transform.GetChild(transform.childCount - 2).GetComponentInChildren<Button>().interactable = false;
+                //transform.GetChild(transform.childCount - 2).GetComponentInChildren<Button>().interactable = false;
             }
 
             else {
@@ -131,6 +147,7 @@ public class UIManager : MonoBehaviour
                         //Exit button is active
                         GameObject.Find("Rewards_frame_button_exit").GetComponent<Button>().interactable = true;
                     }
+                    GenerateLevelLabels();
                     InitLevel(currentLevelNo);
                 }
 
@@ -144,12 +161,42 @@ public class UIManager : MonoBehaviour
         transform.GetChild(transform.childCount - 1).GetComponentInChildren<Button>().interactable = false;
     }
 
-    public void ExitButtonCallback() {
+    private void ExitButtonCallback() {
 
         Instantiate(exitScreenPrefab, this.transform);
         
         for(int i = 0; i < rewardsInventory.InventoryLength; i++) {
             Debug.Log(rewardsInventory.ItemAt(i).SlotItem.ItemName + " : " + rewardsInventory.ItemAt(i).Amount);
+        }
+    }
+
+    private void GenerateLevelLabels() {
+
+        float labelWidth = levelLabelPrefab.GetComponent<RectTransform>().sizeDelta.x + 20;
+
+        GameObject container = GameObject.Find("Levels_frame_container_levellabels");
+
+        //Delete existing childs
+        foreach (Transform transform in container.transform) {
+            Destroy(transform.gameObject);
+        }
+
+        //Set container size
+        //container.GetComponent<RectTransform>().sizeDelta = new Vector2(labelWidth * levelSettings.Count, container.GetComponent<RectTransform>().sizeDelta.y);
+        //container.GetComponent<RectTransform>().anchoredPosition = new Vector2(labelWidth * levelSettings.Count / 2, container.GetComponent<RectTransform>().anchoredPosition.y);
+        for(int i = 0; i < levelSettings.Count; i++) {
+            GameObject levelLabel = Instantiate(levelLabelPrefab, container.transform);
+            levelLabel.GetComponent<RectTransform>().anchoredPosition = new Vector2(labelWidth * (i - (currentLevelNo - 1)), levelLabel.GetComponent<RectTransform>().anchoredPosition.y);
+            levelLabel.GetComponentInChildren<TextMeshProUGUI>().text = (i + 1).ToString();
+            if((i + 1) % silverPeriod == 0) {
+                levelLabel.GetComponent<Image>().sprite = levelLabelSprites[1];
+            }
+            else if((i + 1) % goldPeriod == 0) {
+                levelLabel.GetComponent<Image>().sprite = levelLabelSprites[2];
+            }
+            else {
+                levelLabel.GetComponent<Image>().sprite = levelLabelSprites[0];
+            }
         }
     }
 }

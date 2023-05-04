@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 2084344863359271859}
   - component: {fileID: 2886834574863628201}
   m_Layer: 5
-  m_Name: ui_exitscreen_popup
+  m_Name: ui_prefab_exitscreen_popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
