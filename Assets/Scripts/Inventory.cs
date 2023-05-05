@@ -9,6 +9,10 @@ public class Inventory {
         _inventory = new List<SlotValue>();
     }
 
+    public Inventory(List<SlotValue> inventoryItems) {
+        _inventory = inventoryItems;
+    }
+
     private List<SlotValue> _inventory;
 
     //Returns the number of type of items in inventory

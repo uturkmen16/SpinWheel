@@ -13,7 +13,7 @@ public class MainMenuManager : MonoBehaviour
             SceneManager.LoadScene("SpinWheelScreen");
         });
         this.transform.Find("Inventory_button").GetComponent<Button>().onClick.AddListener(() => {
-            //SceneManager.LoadScene("SpinWheelScreen");
+            SceneManager.LoadScene("InventoryScreen");
         });
         this.transform.Find("Exit_button").GetComponent<Button>().onClick.AddListener(() => {
             Application.Quit();
