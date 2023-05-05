@@ -16,7 +16,6 @@ public class CreateInventoryItems : MonoBehaviour
             item.GetComponentInChildren<Image>().sprite = inventory.ItemAt(i).SlotItem.ItemIcon;
             item.GetComponentInChildren<TextMeshProUGUI>().text = inventory.ItemAt(i).Amount.ToString();
             float width = item.GetComponent<RectTransform>().sizeDelta.x;
-            Debug.Log((float)(inventory.InventoryLength - 1) / 2);
             item.GetComponent<RectTransform>().anchoredPosition = new Vector2(width * (i - (float)(inventory.InventoryLength - 1) / 2), item.GetComponent<RectTransform>().anchoredPosition.y);
         }
     }

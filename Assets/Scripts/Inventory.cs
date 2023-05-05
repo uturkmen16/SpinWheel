@@ -63,6 +63,19 @@ public class Inventory {
         return false;
     }
 
+    //Returns the speficied item amount, if there is none return -1
+    public int ItemAmount(SlotItem slotItem) {
+
+        for(int i = 0; i < _inventory.Count; i++) {
+
+            if(slotItem.ItemName == _inventory[i].SlotItem.ItemName) {
+               return _inventory[i].Amount;
+            }
+        }
+
+        return -1;
+    }
+
     //Checks if the given item is in inventory
     public bool IsInInventory(SlotValue slotValue) {
 
@@ -74,6 +87,15 @@ public class Inventory {
             }
         }
             return false;
+    }
+
+    //Adds the items in an inventory to this one
+    public void AddInventory(Inventory addedInventory) {
+
+        for(int i = 0; i < addedInventory.InventoryLength; i++) {
+            this.AddItem(addedInventory.ItemAt(i));
+        }
+
     }
 
     //Deletes all of the existing items

@@ -529,9 +529,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryItems:
   - _slotItem: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
-    _amount: 255
+    _amount: 25
   - _slotItem: {fileID: 11400000, guid: 9e6a9f679e9f18a4f902af20e11833f3, type: 2}
-    _amount: 255
+    _amount: 25
 --- !u!1 &1097560307
 GameObject:
   m_ObjectHideFlags: 0

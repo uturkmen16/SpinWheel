@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -81,9 +82,6 @@ public class UIManager : MonoBehaviour
     private void DisplayInventory() {
 
         GameObject container = GameObject.Find("Rewards_frame_display_container");
-        if(container == null) {
-            Debug.Log("CANT FIND CONTAINER");
-        }
         //Delete all of the children
         foreach (Transform child in container.transform) {
             GameObject.Destroy(child.gameObject);
@@ -115,7 +113,6 @@ public class UIManager : MonoBehaviour
             //Spin animation is over
             if(levelSettings[currentLevelNo - 1].Rewards[randomInt % 8].SlotItem.ItemType == ItemType.Lethal) {
                 //Item is a lethal bomb
-                Debug.Log("GAME OVER!!");
                 Destroy(currentLevelInstance);
 
                 if(currentLevelNo <= levelSettings.Count) {
@@ -134,7 +131,6 @@ public class UIManager : MonoBehaviour
 
             else {
                 //Item is an inventory item
-                Debug.Log("You've earned " + levelSettings[currentLevelNo - 1].Rewards[randomInt % 8].Amount + " amount of item " + levelSettings[currentLevelNo].Rewards[randomInt % 8].SlotItem.ItemName);
                 rewardsInventory.AddItem(levelSettings[currentLevelNo - 1].Rewards[randomInt % 8]);
 
                 DisplayInventory();
@@ -152,7 +148,9 @@ public class UIManager : MonoBehaviour
                 }
 
                 else {
-                    Debug.Log("There are no more levels!");
+                    //There are no more levels
+                    GameObject.Find("PlayerInventory").GetComponent<PlayerInventory>().Inventory.AddInventory(rewardsInventory);
+                    SceneManager.LoadScene("MainMenuScreen");
                 }
             }
         });
@@ -163,11 +161,8 @@ public class UIManager : MonoBehaviour
 
     private void ExitButtonCallback() {
 
-        Instantiate(exitScreenPrefab, this.transform);
-        
-        for(int i = 0; i < rewardsInventory.InventoryLength; i++) {
-            Debug.Log(rewardsInventory.ItemAt(i).SlotItem.ItemName + " : " + rewardsInventory.ItemAt(i).Amount);
-        }
+        GameObject exitPopup = Instantiate(exitScreenPrefab, this.transform);
+        exitPopup.GetComponent<ExitScreenPopUp>().earnedItems = rewardsInventory;
     }
 
     private void GenerateLevelLabels() {
