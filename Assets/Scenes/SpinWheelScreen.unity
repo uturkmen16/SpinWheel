@@ -1514,11 +1514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelSettings:
-  - {fileID: 11400000, guid: 65beb2677b0b4b44698644c166689f7f, type: 2}
-  - {fileID: 11400000, guid: 65beb2677b0b4b44698644c166689f7f, type: 2}
-  - {fileID: 11400000, guid: 65beb2677b0b4b44698644c166689f7f, type: 2}
-  - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
-  - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
@@ -1528,28 +1523,33 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
+  - {fileID: 11400000, guid: e3806918038bcb84f8b26d758f7648cd, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
+  - {fileID: 11400000, guid: e3806918038bcb84f8b26d758f7648cd, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
+  - {fileID: 11400000, guid: e3806918038bcb84f8b26d758f7648cd, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
+  - {fileID: 11400000, guid: e3806918038bcb84f8b26d758f7648cd, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
+  - {fileID: 11400000, guid: 65beb2677b0b4b44698644c166689f7f, type: 2}
   silverPeriod: 5
   goldPeriod: 30
   slotValuePrefab: {fileID: 2432922351646656727, guid: 9ef17c57d9b3afa4883886ad3bdc7a3e, type: 3}
   bronzePrefab: {fileID: 8445194864174831040, guid: 491d47a4d9911da4498e4c29f2e92200, type: 3}
-  silverPrefab: {fileID: 8445194864174831040, guid: b8de7310ea4e5db469736a8b2606d2e6, type: 3}
-  goldPrefab: {fileID: 8445194864174831040, guid: 1e0f8b838890ef64ba7c8a411df34daa, type: 3}
+  silverPrefab: {fileID: 8445194864174831040, guid: a0dde92ea9851bb41a0b0bc01fe67823, type: 3}
+  goldPrefab: {fileID: 8445194864174831040, guid: 20662a9adee076742a54113ff4cc6758, type: 3}
   exitScreenPrefab: {fileID: 2084344863359271857, guid: b5b33bcefb56ead42a7490301b0b743d, type: 3}
   lethalScreenPrefab: {fileID: 4984461990958418775, guid: adf2721394f11cf4090cf8d5683e0428, type: 3}
   levelLabelPrefab: {fileID: 5241167395023458806, guid: 959aeda798f47dd4496279e8d5a279bc, type: 3}

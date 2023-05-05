@@ -16,18 +16,18 @@ MonoBehaviour:
   _maximumRoll: 15
   _rewards:
   - _slotItem: {fileID: 11400000, guid: 9e6a9f679e9f18a4f902af20e11833f3, type: 2}
-    _amount: 134
+    _amount: 150
+  - _slotItem: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
+    _amount: 1000
   - _slotItem: {fileID: 11400000, guid: 9e6a9f679e9f18a4f902af20e11833f3, type: 2}
-    _amount: 11
+    _amount: 25
   - _slotItem: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
-    _amount: 438366
-  - _slotItem: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
-    _amount: 1336099
+    _amount: 10000000
   - _slotItem: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
     _amount: 878275
-  - _slotItem: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
-    _amount: 1343
-  - _slotItem: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
+  - _slotItem: {fileID: 11400000, guid: 9e6a9f679e9f18a4f902af20e11833f3, type: 2}
+    _amount: 100
+  - _slotItem: {fileID: 11400000, guid: 97f6d761db4b1464fa426e75416ac86c, type: 2}
     _amount: 1
   - _slotItem: {fileID: 11400000, guid: cdfde0f5b97f378459a43416bfe6c295, type: 2}
-    _amount: 778
+    _amount: 1000
