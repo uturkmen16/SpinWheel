@@ -69,7 +69,7 @@ namespace SpinWheel {
                 Transform childTransform = baseTransform.GetChild(i);
                 childTransform.GetComponentInChildren<Image>().sprite = levelSettings[levelNo - 1].Rewards[i].SlotItem.ItemIcon;
                 int amount = levelSettings[levelNo - 1].Rewards[i].Amount;
-                childTransform.GetComponentInChildren<TextMeshProUGUI>().text = "x" + Utils.AbbreviateInteger(amount);
+                childTransform.GetComponentInChildren<TextMeshProUGUI>().text = "x" + Utils.ShortenInteger(amount);
             }
 
             //Add spin button callback

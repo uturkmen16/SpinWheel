@@ -1,23 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace SpinWheel {
     public static class Utils {
-        //Takes integer value and returns string using K for thousands and M for millions
-        public static string AbbreviateInteger(int val) {
+
+        static UtilsSettings _utilsSettings;
+
+        static public UtilsSettings UtilsSettings {
+            get {return _utilsSettings;}
+            set {_utilsSettings = value;}
+        }
+        //Takes integer value and shortens it with string values instead of zeroes
+        public static string ShortenInteger(int value) {
+            List<ThresholdValue> thresholdValues = _utilsSettings.ThresholdValues;
+            thresholdValues = thresholdValues.OrderByDescending(obj => obj.threshold).ToList();
+            for(int i = 0; i < thresholdValues.Count; i++) {
+                int threshold = thresholdValues[i].threshold;
+                if(value >= threshold) {
+                    return (value /= threshold).ToString() + thresholdValues[i].notation;
+                }
+            }
+            return value.ToString();
+        }
+
+        public static string ShortenInteger(int value, string thousandNotation, string millionNotation) {
             string suffix = "";
-            if(val > 999999) {
+            if(value > 999999) {
                 //Million
-                val /= 1000000;
-                suffix = "M";
+                value /= 1000000;
+                suffix = thousandNotation;
             }
-            else if(val > 999) {
+            else if(value > 999) {
                 //Thousand
-                val /= 1000;
-                suffix = "K";
+                value /= 1000;
+                suffix = millionNotation;
             }
-            return val.ToString() + suffix;
+            return value.ToString() + suffix;
         }
     }
 }
