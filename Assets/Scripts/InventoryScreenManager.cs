@@ -4,19 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class InventoryScreenManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        transform.Find("Button_back").GetComponent<Button>().onClick.AddListener(() => {
-            SceneManager.LoadScene("MainMenuScreen");
-        });
-    }
+namespace SpinWheel {
 
-    // Update is called once per frame
-    void Update()
+    public class InventoryScreenManager : MonoBehaviour
     {
-        
+        // Start is called before the first frame update
+        void Start()
+        {
+            transform.Find("Button_back").GetComponent<Button>().onClick.AddListener(() => {
+                SceneManager.LoadScene("MainMenuScreen");
+            });
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            
+        }
     }
+    
 }
