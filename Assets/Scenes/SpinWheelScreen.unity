@@ -2554,10 +2554,9 @@ MonoBehaviour:
   lethalScreenPrefab: {fileID: 4984461990958418775, guid: adf2721394f11cf4090cf8d5683e0428, type: 3}
   deathScreenPopUp: {fileID: 1426538084}
   levelLabelPrefab: {fileID: 5241167395023458806, guid: 959aeda798f47dd4496279e8d5a279bc, type: 3}
-  levelLabelSprites:
-  - {fileID: 21300000, guid: c5b2341ec1376294fbf7edb8b931408d, type: 3}
-  - {fileID: 21300000, guid: 58c1f49b90c7c194fadb4ee9cff0d2f6, type: 3}
-  - {fileID: 21300000, guid: bfa9fdc655674fd4c97adda6e8fbd3f6, type: 3}
+  bronzeLevelLabelSprite: {fileID: 21300000, guid: c5b2341ec1376294fbf7edb8b931408d, type: 3}
+  silverLevelLabelSprite: {fileID: 21300000, guid: bfa9fdc655674fd4c97adda6e8fbd3f6, type: 3}
+  goldLevelLabelSprite: {fileID: 21300000, guid: 58c1f49b90c7c194fadb4ee9cff0d2f6, type: 3}
 --- !u!1 &1970498638
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,9 +36,13 @@ namespace SpinWheel {
         [SerializeField]
         private GameObject deathScreenPopUp;
         [SerializeField]
-        private GameObject levelLabelPrefab;    
+        private GameObject levelLabelPrefab;
         [SerializeField]
-        private List<Sprite> levelLabelSprites;
+        private Sprite bronzeLevelLabelSprite;
+        [SerializeField]
+        private Sprite silverLevelLabelSprite;
+        [SerializeField]
+        private Sprite goldLevelLabelSprite;
 
         
         private GameObject currentLevelInstance;
@@ -65,23 +69,17 @@ namespace SpinWheel {
 
         private void InitLevel(int levelNo) {
 
-            levelSettings[levelNo - 1].ShuffleRewards();
+            int levelNoMinusOne = levelNo - 1;
+
+            levelSettings[levelNoMinusOne].ShuffleRewards();
 
             if(levelNo % goldPeriod == 0) currentLevelInstance = Instantiate(goldPrefab, transform);
             else if(levelNo % silverPeriod == 0) currentLevelInstance = Instantiate(silverPrefab, transform);
             else currentLevelInstance = Instantiate(bronzePrefab, transform);
+            
+            //Can be changed to take parameters with a factory but does it make sense?
 
-            Transform baseTransform = currentLevelInstance.transform.GetChild(0);
-
-            for(int i = 0; i < baseTransform.childCount; i++) {
-                Transform childTransform = baseTransform.GetChild(i);
-                childTransform.GetComponentInChildren<Image>().sprite = levelSettings[levelNo - 1].Rewards[i].SlotItem.ItemIcon;
-                int amount = levelSettings[levelNo - 1].Rewards[i].Amount;
-                childTransform.GetComponentInChildren<TextMeshProUGUI>().text = "x" + Utils.ShortenInteger(amount);
-            }
-
-            //Add spin button callback
-            currentLevelInstance.GetComponentInChildren<Button>().onClick.AddListener(SpinWheel);
+            currentLevelInstance.GetComponent<SpinWheelPrefab>().InitSpinWheel(SpinWheel, levelSettings[levelNoMinusOne]);
         }
 
         private void DisplayInventory() {
@@ -161,8 +159,7 @@ namespace SpinWheel {
             },
             randomInt); 
 
-            //Change this from being hardcoded
-            transform.GetChild(transform.childCount - 1).GetComponentInChildren<Button>().interactable = false;
+            currentLevelInstance.GetComponentInChildren<Button>().interactable = false;
         }
 
         private void ExitButtonCallback() {
@@ -172,8 +169,8 @@ namespace SpinWheel {
         }
 
         private void GenerateLevelLabels() {
-
-            float labelWidth = levelLabelPrefab.GetComponent<RectTransform>().sizeDelta.x + 20;
+            float offsetX = 20.0f;
+            float labelWidth = levelLabelPrefab.GetComponent<RectTransform>().sizeDelta.x + offsetX;
 
             GameObject container = levelsFrameLevelLabelsContainer;
 
@@ -183,17 +180,18 @@ namespace SpinWheel {
             }
 
             for(int i = 0; i < levelSettings.Count; i++) {
+                int levelIndex = i + 1;
                 GameObject levelLabel = Instantiate(levelLabelPrefab, container.transform);
                 levelLabel.GetComponent<RectTransform>().anchoredPosition = new Vector2(labelWidth * (i - (currentLevelNo - 1)), levelLabel.GetComponent<RectTransform>().anchoredPosition.y);
-                levelLabel.GetComponentInChildren<TextMeshProUGUI>().text = (i + 1).ToString();
-                if((i + 1) % silverPeriod == 0) {
-                    levelLabel.GetComponent<Image>().sprite = levelLabelSprites[1];
+                levelLabel.GetComponentInChildren<TextMeshProUGUI>().text = levelIndex.ToString();
+                if(levelIndex % goldPeriod == 0) {
+                    levelLabel.GetComponent<Image>().sprite = goldLevelLabelSprite;
                 }
-                else if((i + 1) % goldPeriod == 0) {
-                    levelLabel.GetComponent<Image>().sprite = levelLabelSprites[2];
+                else if(levelIndex % silverPeriod == 0) {
+                    levelLabel.GetComponent<Image>().sprite = silverLevelLabelSprite;
                 }
                 else {
-                    levelLabel.GetComponent<Image>().sprite = levelLabelSprites[0];
+                    levelLabel.GetComponent<Image>().sprite = bronzeLevelLabelSprite;
                 }
             }
         }

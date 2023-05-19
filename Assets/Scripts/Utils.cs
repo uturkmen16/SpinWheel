@@ -24,5 +24,9 @@ namespace SpinWheel {
             }
             return value.ToString();
         }
+
+        public static string ShortenInteger(string prefix, int value) {
+            return prefix + ShortenInteger(value);
+        }
     }
 }
