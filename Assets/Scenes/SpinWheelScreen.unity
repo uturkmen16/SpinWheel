@@ -2542,7 +2542,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: 65beb2677b0b4b44698644c166689f7f, type: 2}
-  silverPeriod: 2
+  silverPeriod: 5
   goldPeriod: 30
   rewardsFrameExitButton: {fileID: 507646564}
   rewardsFrameDisplayContainer: {fileID: 573974271}

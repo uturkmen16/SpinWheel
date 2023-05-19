@@ -16,7 +16,7 @@ namespace SpinWheel {
 
         public delegate void SpinButtonCallback();
 
-        public void InitSpinWheel( SpinButtonCallback spinButtonCallback, LevelSettings levelSettings) {
+        public void InitSpinWheel(SpinButtonCallback spinButtonCallback, LevelSettings levelSettings) {
             for(int i = 0; i < objectToSpin.transform.childCount; i++) {
                 Transform childTransform = objectToSpin.transform.GetChild(i);
                 childTransform.GetComponentInChildren<Image>().sprite = levelSettings.Rewards[i].SlotItem.ItemIcon;
@@ -29,7 +29,10 @@ namespace SpinWheel {
         }
 
         public void RotateWheel(RotationOverCallback callback, int randomInt) {
-            objectToSpin.transform.DORotate(new Vector3(0, 0, randomInt * 45), 1 + randomInt / 5, RotateMode.LocalAxisAdd).OnComplete(() => {
+            float rotateAngle = 45.0f;
+            float timerBase = 1.0f;
+            float timerMultiplier =  0.2f;
+            objectToSpin.transform.DORotate(new Vector3(0, 0, randomInt * rotateAngle), timerBase + randomInt * timerMultiplier, RotateMode.LocalAxisAdd).OnComplete(() => {
                 callback();
             });
         }

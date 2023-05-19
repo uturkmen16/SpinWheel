@@ -42,6 +42,8 @@ namespace SpinWheel {
         [SerializeField]
         private Sprite goldLevelLabelSprite;
 
+        private const int totalSlots = 8;
+
         
         private GameObject currentLevelInstance;
 
@@ -113,7 +115,7 @@ namespace SpinWheel {
             currentLevelInstance.GetComponent<SpinWheelPrefab>().RotateWheel(() => {
                 
                 //Spin animation is over
-                if(levelSettings[currentLevelNo - 1].Rewards[randomInt % 8].SlotItem.ItemType == ItemType.Lethal) {
+                if(levelSettings[currentLevelNo - 1].Rewards[randomInt % totalSlots].SlotItem.ItemType == ItemType.Lethal) {
                     //Item is a deathly bomb
                     Destroy(currentLevelInstance);
 
@@ -132,7 +134,7 @@ namespace SpinWheel {
 
                 else {
                     //Item is an inventory item
-                    rewardsInventory.AddItem(levelSettings[currentLevelNo - 1].Rewards[randomInt % 8]);
+                    rewardsInventory.AddItem(levelSettings[currentLevelNo - 1].Rewards[randomInt % totalSlots]);
 
                     DisplayInventory();
 
