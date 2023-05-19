@@ -24,20 +24,5 @@ namespace SpinWheel {
             }
             return value.ToString();
         }
-
-        public static string ShortenInteger(int value, string thousandNotation, string millionNotation) {
-            string suffix = "";
-            if(value > 999999) {
-                //Million
-                value /= 1000000;
-                suffix = thousandNotation;
-            }
-            else if(value > 999) {
-                //Thousand
-                value /= 1000;
-                suffix = millionNotation;
-            }
-            return value.ToString() + suffix;
-        }
     }
 }

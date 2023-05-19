@@ -5,18 +5,14 @@ using UnityEngine;
 namespace SpinWheel {
 
     public class PlayerInventory : MonoBehaviour {
+
+        public static Inventory inventory;
         
         [SerializeField]
         private List<SlotValue> inventoryItems;
-        private Inventory _inventory;
-
-        public Inventory Inventory {
-            get {return _inventory;}
-        }
 
         void Awake() {
-            _inventory = new Inventory(inventoryItems);
-            DontDestroyOnLoad(this.gameObject);
+            inventory = new Inventory(inventoryItems);
         }
     }
     

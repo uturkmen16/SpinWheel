@@ -6,6 +6,8 @@ using System;
 namespace SpinWheel {
 
     public class Inventory {
+
+        private List<SlotValue> _inventory;
         
         public Inventory() {
             _inventory = new List<SlotValue>();
@@ -14,8 +16,6 @@ namespace SpinWheel {
         public Inventory(List<SlotValue> inventoryItems) {
             _inventory = inventoryItems;
         }
-
-        private List<SlotValue> _inventory;
 
         //Returns the number of type of items in inventory
         public int InventoryLength {
@@ -101,7 +101,7 @@ namespace SpinWheel {
         }
 
         //Deletes all of the existing items
-        public void DeleteInventory() {
+        public void EmptyInventory() {
 
             _inventory = new List<SlotValue>();
 

@@ -28,6 +28,8 @@ namespace SpinWheel {
         [SerializeField]
         private GameObject lethalScreenPrefab;
         [SerializeField]
+        private GameObject deathScreenPopUp;
+        [SerializeField]
         private GameObject levelLabelPrefab;    
         [SerializeField]
         private List<Sprite> levelLabelSprites;
@@ -121,7 +123,9 @@ namespace SpinWheel {
                         GenerateLevelLabels();
                         InitLevel(currentLevelNo);
                     }
-                    Instantiate(lethalScreenPrefab, this.transform);
+                    deathScreenPopUp.transform.SetAsLastSibling();
+                    deathScreenPopUp.SetActive(true);
+                    //Instantiate(lethalScreenPrefab, this.transform);
                     //Change this from being hardcoded
                     //transform.GetChild(transform.childCount - 2).GetComponentInChildren<Button>().interactable = false;
                 }
@@ -146,7 +150,7 @@ namespace SpinWheel {
 
                     else {
                         //There are no more levels
-                        GameObject.Find("PlayerInventory").GetComponent<PlayerInventory>().Inventory.AddInventory(rewardsInventory);
+                        PlayerInventory.inventory.AddInventory(rewardsInventory);
                         SceneManager.LoadScene("MainMenuScreen");
                     }
                 }

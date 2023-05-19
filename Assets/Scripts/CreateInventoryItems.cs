@@ -12,7 +12,7 @@ namespace SpinWheel {
         private Inventory inventory;
 
         void Awake() {
-            inventory = GameObject.Find("PlayerInventory").GetComponent<PlayerInventory>().Inventory;
+            inventory = PlayerInventory.inventory;
             for(int i = 0; i < inventory.InventoryLength; i++) {
                 GameObject item = Instantiate(itemPrefab, this.transform);
                 item.GetComponentInChildren<Image>().sprite = inventory.ItemAt(i).SlotItem.ItemIcon;

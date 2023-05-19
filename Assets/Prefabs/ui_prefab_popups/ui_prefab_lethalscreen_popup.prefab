@@ -987,6 +987,10 @@ MonoBehaviour:
   slotValue:
     _slotItem: {fileID: 11400000, guid: 9e6a9f679e9f18a4f902af20e11833f3, type: 2}
     _amount: 25
+  exitButton: {fileID: 4984461991388536332}
+  reviveButton: {fileID: 956641334542623117}
+  reviveButtonAmountText: {fileID: 956641334454352519}
+  reviveButtonItemIcon: {fileID: 956641334275392235}
 --- !u!1 &4984461990979628448
 GameObject:
   m_ObjectHideFlags: 0

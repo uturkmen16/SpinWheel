@@ -11,7 +11,7 @@ namespace SpinWheel {
         void Start()
         {
             this.transform.GetChild(0).Find("Exitscreen_button_exit").GetComponent<Button>().onClick.AddListener(() => {
-                GameObject.Find("PlayerInventory").GetComponent<PlayerInventory>().Inventory.AddInventory(earnedItems);
+                PlayerInventory.inventory.AddInventory(earnedItems);
                 SceneManager.LoadScene("MainMenuScreen");
             });
             this.transform.GetChild(0).Find("Exitscreen_button_goback").GetComponent<Button>().onClick.AddListener(() => {
