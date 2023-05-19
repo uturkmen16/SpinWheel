@@ -15,7 +15,7 @@ namespace SpinWheel {
                 SceneManager.LoadScene("MainMenuScreen");
             });
             this.transform.GetChild(0).Find("Exitscreen_button_goback").GetComponent<Button>().onClick.AddListener(() => {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             });
         }
     }

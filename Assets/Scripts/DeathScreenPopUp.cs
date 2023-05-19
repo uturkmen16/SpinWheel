@@ -30,7 +30,6 @@ namespace SpinWheel {
             });        
 
             Inventory playerInventory = PlayerInventory.inventory;
-            Debug.Log("alo");
             if(playerInventory.ItemAmount(slotValue.SlotItem) >= slotValue.Amount) {
                 Debug.Log(slotValue.Amount);
                 //There are enough currency to spend
@@ -42,7 +41,6 @@ namespace SpinWheel {
             }
 
             else {
-                Debug.Log("sa");
                 //Not enough currency
                 reviveButton.GetComponent<Button>().interactable = false;
                 reviveButton.GetComponentInChildren<TextMeshProUGUI>().text = "Not enough Currency";

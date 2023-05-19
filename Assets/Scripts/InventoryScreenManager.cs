@@ -15,12 +15,6 @@ namespace SpinWheel {
                 SceneManager.LoadScene("MainMenuScreen");
             });
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
     }
     
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 namespace SpinWheel {
     public static class Utils {
@@ -27,6 +28,19 @@ namespace SpinWheel {
 
         public static string ShortenInteger(string prefix, int value) {
             return prefix + ShortenInteger(value);
+        }
+
+        public static string AddThousandSeperator(int value, char seperator) {
+            string strvalue = value.ToString();
+            Debug.Log(strvalue.Length);
+            string result = "";
+            for(int i = 0; i < strvalue.Length; i++) {
+                if((strvalue.Length - i) % 3 == 0) {
+                    result += seperator;
+                }
+                result += strvalue[i];
+            }
+            return result;
         }
     }
 }

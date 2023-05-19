@@ -30,9 +30,7 @@ namespace SpinWheel {
         [SerializeField]
         private GameObject goldPrefab;
         [SerializeField]
-        private GameObject exitScreenPrefab;
-        [SerializeField]
-        private GameObject lethalScreenPrefab;
+        private GameObject exitScreenPopUp;
         [SerializeField]
         private GameObject deathScreenPopUp;
         [SerializeField]
@@ -163,9 +161,11 @@ namespace SpinWheel {
         }
 
         private void ExitButtonCallback() {
-
-            GameObject exitPopup = Instantiate(exitScreenPrefab, this.transform);
-            exitPopup.GetComponent<ExitScreenPopUp>().earnedItems = rewardsInventory;
+            
+            exitScreenPopUp.transform.SetAsLastSibling();
+            exitScreenPopUp.SetActive(true);
+            exitScreenPopUp.GetComponent<ExitScreenPopUp>().earnedItems = rewardsInventory;
+            
         }
 
         private void GenerateLevelLabels() {
