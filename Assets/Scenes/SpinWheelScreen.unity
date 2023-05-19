@@ -2511,9 +2511,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelSettings:
-  - {fileID: 11400000, guid: ff954a8190ae590429e1b8aef2cb3fdd, type: 2}
-  - {fileID: 11400000, guid: ff954a8190ae590429e1b8aef2cb3fdd, type: 2}
-  - {fileID: 11400000, guid: ff954a8190ae590429e1b8aef2cb3fdd, type: 2}
+  - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
+  - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
+  - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
   - {fileID: 11400000, guid: ff954a8190ae590429e1b8aef2cb3fdd, type: 2}
   - {fileID: 11400000, guid: ff954a8190ae590429e1b8aef2cb3fdd, type: 2}
   - {fileID: 11400000, guid: 51316d8d3490bbf42b2d63a530249e61, type: 2}
@@ -2543,6 +2543,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 65beb2677b0b4b44698644c166689f7f, type: 2}
   silverPeriod: 5
   goldPeriod: 30
+  rewardsFrameExitButton: {fileID: 507646564}
+  rewardsFrameDisplayContainer: {fileID: 573974271}
+  levelsFrameLevelLabelsContainer: {fileID: 603411569}
   slotValuePrefab: {fileID: 2432922351646656727, guid: 9ef17c57d9b3afa4883886ad3bdc7a3e, type: 3}
   bronzePrefab: {fileID: 8445194864174831040, guid: 491d47a4d9911da4498e4c29f2e92200, type: 3}
   silverPrefab: {fileID: 8445194864174831040, guid: a0dde92ea9851bb41a0b0bc01fe67823, type: 3}

@@ -16,6 +16,12 @@ namespace SpinWheel {
         [SerializeField]
         private int goldPeriod;
         [SerializeField]
+        private GameObject rewardsFrameExitButton;
+        [SerializeField]
+        private GameObject rewardsFrameDisplayContainer;
+        [SerializeField]
+        private GameObject levelsFrameLevelLabelsContainer;
+        [SerializeField]
         private GameObject slotValuePrefab;
         [SerializeField]
         private GameObject bronzePrefab;
@@ -43,7 +49,7 @@ namespace SpinWheel {
         private Inventory rewardsInventory = new Inventory();
         void Start() {
             GenerateLevelLabels();
-            GameObject.Find("Rewards_frame_button_exit").GetComponent<Button>().onClick.AddListener(ExitButtonCallback);
+            rewardsFrameExitButton.GetComponent<Button>().onClick.AddListener(ExitButtonCallback);
             InitLevel(currentLevelNo);
         }
         void OnValidate() {
@@ -80,7 +86,8 @@ namespace SpinWheel {
 
         private void DisplayInventory() {
 
-            GameObject container = GameObject.Find("Rewards_frame_display_container");
+            GameObject container = rewardsFrameDisplayContainer;
+
             //Delete all of the children
             foreach (Transform child in container.transform) {
                 GameObject.Destroy(child.gameObject);
@@ -104,30 +111,27 @@ namespace SpinWheel {
 
         private void SpinWheel() {
             //Exit button is inactive since game started
-            GameObject.Find("Rewards_frame_button_exit").GetComponent<Button>().interactable = false;
+            rewardsFrameExitButton.GetComponent<Button>().interactable = false;
 
             int randomInt = UnityEngine.Random.Range(levelSettings[currentLevelNo - 1].MinimumRoll, levelSettings[currentLevelNo - 1].MaximumRoll);
-            currentLevelInstance.transform.GetChild(0).transform.DORotate(new Vector3(0, 0, randomInt * 45), 1 + randomInt / 5, RotateMode.LocalAxisAdd)
-            .OnComplete(() => {
+            currentLevelInstance.GetComponent<SpinWheelPrefab>().RotateWheel(() => {
+                
                 //Spin animation is over
                 if(levelSettings[currentLevelNo - 1].Rewards[randomInt % 8].SlotItem.ItemType == ItemType.Lethal) {
-                    //Item is a lethal bomb
+                    //Item is a deathly bomb
                     Destroy(currentLevelInstance);
 
                     if(currentLevelNo <= levelSettings.Count) {
                         currentLevelNo++;
                         if(currentLevelNo % silverPeriod == 0 || currentLevelNo % goldPeriod == 0) {
                             //Exit button is active
-                            GameObject.Find("Rewards_frame_button_exit").GetComponent<Button>().interactable = true;
+                            rewardsFrameExitButton.GetComponent<Button>().interactable = true;
                         }
                         GenerateLevelLabels();
                         InitLevel(currentLevelNo);
                     }
                     deathScreenPopUp.transform.SetAsLastSibling();
                     deathScreenPopUp.SetActive(true);
-                    //Instantiate(lethalScreenPrefab, this.transform);
-                    //Change this from being hardcoded
-                    //transform.GetChild(transform.childCount - 2).GetComponentInChildren<Button>().interactable = false;
                 }
 
                 else {
@@ -142,7 +146,7 @@ namespace SpinWheel {
                         currentLevelNo++;
                         if(currentLevelNo % silverPeriod == 0 || currentLevelNo % goldPeriod == 0) {
                             //Exit button is active
-                            GameObject.Find("Rewards_frame_button_exit").GetComponent<Button>().interactable = true;
+                            rewardsFrameExitButton.GetComponent<Button>().interactable = true;
                         }
                         GenerateLevelLabels();
                         InitLevel(currentLevelNo);
@@ -154,7 +158,8 @@ namespace SpinWheel {
                         SceneManager.LoadScene("MainMenuScreen");
                     }
                 }
-            });
+            },
+            randomInt); 
 
             //Change this from being hardcoded
             transform.GetChild(transform.childCount - 1).GetComponentInChildren<Button>().interactable = false;
@@ -170,16 +175,13 @@ namespace SpinWheel {
 
             float labelWidth = levelLabelPrefab.GetComponent<RectTransform>().sizeDelta.x + 20;
 
-            GameObject container = GameObject.Find("Levels_frame_container_levellabels");
+            GameObject container = levelsFrameLevelLabelsContainer;
 
             //Delete existing childs
             foreach (Transform transform in container.transform) {
                 Destroy(transform.gameObject);
             }
 
-            //Set container size
-            //container.GetComponent<RectTransform>().sizeDelta = new Vector2(labelWidth * levelSettings.Count, container.GetComponent<RectTransform>().sizeDelta.y);
-            //container.GetComponent<RectTransform>().anchoredPosition = new Vector2(labelWidth * levelSettings.Count / 2, container.GetComponent<RectTransform>().anchoredPosition.y);
             for(int i = 0; i < levelSettings.Count; i++) {
                 GameObject levelLabel = Instantiate(levelLabelPrefab, container.transform);
                 levelLabel.GetComponent<RectTransform>().anchoredPosition = new Vector2(labelWidth * (i - (currentLevelNo - 1)), levelLabel.GetComponent<RectTransform>().anchoredPosition.y);

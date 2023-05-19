@@ -1887,6 +1887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8445194864174831043}
+  - component: {fileID: 6825425658325126997}
   m_Layer: 5
   m_Name: ui_prefab_spin_silver
   m_TagString: Untagged
@@ -1917,6 +1918,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6825425658325126997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8445194864174831040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47dde7c2816ca346bfb6b0efc2acc5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpin: {fileID: 8445194864756761812}
 --- !u!1 &8445194864756761812
 GameObject:
   m_ObjectHideFlags: 0
