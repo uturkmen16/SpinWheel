@@ -8,15 +8,22 @@ namespace SpinWheel {
 
     public class MainMenuManager : MonoBehaviour
     {
+        [SerializeField]
+        private GameObject playButton;
+        [SerializeField]
+        private GameObject inventoryButton;
+        [SerializeField]
+        private GameObject exitButton;
+
         void Start()
         {
-            this.transform.Find("Play_button").GetComponent<Button>().onClick.AddListener(() => {
+            playButton.GetComponent<Button>().onClick.AddListener(() => {
                 SceneManager.LoadScene("SpinWheelScreen");
             });
-            this.transform.Find("Inventory_button").GetComponent<Button>().onClick.AddListener(() => {
+            inventoryButton.GetComponent<Button>().onClick.AddListener(() => {
                 SceneManager.LoadScene("InventoryScreen");
             });
-            this.transform.Find("Exit_button").GetComponent<Button>().onClick.AddListener(() => {
+            exitButton.GetComponent<Button>().onClick.AddListener(() => {
                 Application.Quit();
             });
         }
