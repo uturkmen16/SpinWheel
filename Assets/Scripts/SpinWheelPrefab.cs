@@ -12,6 +12,10 @@ namespace SpinWheel {
         [SerializeField]
         GameObject objectToSpin;
 
+        const float rotateAngle = 45.0f;
+        const float timerBase = 1.0f;
+        const float timerMultiplier =  0.2f;
+
         public delegate void RotationOverCallback();
 
         public delegate void SpinButtonCallback();
@@ -29,9 +33,6 @@ namespace SpinWheel {
         }
 
         public void RotateWheel(RotationOverCallback callback, int randomInt) {
-            float rotateAngle = 45.0f;
-            float timerBase = 1.0f;
-            float timerMultiplier =  0.2f;
             objectToSpin.transform.DORotate(new Vector3(0, 0, randomInt * rotateAngle), timerBase + randomInt * timerMultiplier, RotateMode.LocalAxisAdd).OnComplete(() => {
                 callback();
             });

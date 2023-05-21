@@ -58,11 +58,9 @@ namespace SpinWheel {
         }
         void OnValidate() {
             if(silverPeriod < 2) {
-                Debug.LogWarning("Silver period must be higher than 1!");
                 silverPeriod = 2;
             }
             if(goldPeriod <= silverPeriod) {
-                Debug.LogWarning("Gold Period must be higher than silver period!");
                 goldPeriod = silverPeriod + 1;
             }
         }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2432922351646656724}
   m_Layer: 5
-  m_Name: ui_prefab_slotvalue
+  m_Name: ui_prefab_slotvalue_static
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
